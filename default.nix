@@ -8,13 +8,17 @@
 
 { pkgs ? import <nixpkgs> { } }:
 
-{
+let
+  inherit (pkgs) lib system;
+  ifSupported = with lib; attr : filterAttrs (name: value: elem system value.meta.platforms) attr;
+
+in {
   # The `lib`, `modules`, and `overlay` names are special
   lib = import ./lib { inherit pkgs; }; # functions
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
 
-  example-package = pkgs.callPackage ./pkgs/example-package { };
-  # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
-  # ...
+} // ifSupported {
+  xwaylandvideobridge = pkgs.libsForQt5.callPackage ./pkgs/xwaylandvideobridge { };
+  xwaylandvideobridge-hypr = pkgs.libsForQt5.callPackage ./pkgs/xwaylandvideobridge { isHyprland = true; };
 }
