@@ -3,6 +3,18 @@
 
 final: prev:
 {
+  harpoon = buildVimPluginFrom2Nix {
+    pname = "harpoon";
+    version = "2023-08-13";
+    src = fetchFromGitHub {
+      owner = "Mikilio";
+      repo = "harpoon";
+      rev = "7d9f2afcaff69d11ad648bad0c84876911b8279e";
+      sha256 = "0lmqn2zzk91dg1xw1zxb8rcv16a0j8ih50ffvka96kmwdxlldrkd";
+    };
+    meta.homepage = "https://github.com/Mikilio/harpoon/";
+  };
+
   knap = buildVimPluginFrom2Nix {
     pname = "knap";
     version = "2023-08-07";
@@ -25,18 +37,6 @@ final: prev:
       sha256 = "19r6sdyaxkjmm9k5l97n4fcp5ycx8d3v9kyydxzcpxji5synv2gq";
     };
     meta.homepage = "https://github.com/jakewvincent/texmagic.nvim/";
-  };
-
-  harpoon = buildVimPluginFrom2Nix {
-    pname = "harpoon";
-    version = "2023-08-12";
-    src = fetchFromGitHub {
-      owner = "Mikilio";
-      repo = "harpoon";
-      rev = "27c8bbe2604a0dcfd357e2cb423b60a19a646a6b";
-      sha256 = "1fcgw06xll20dp073rfjs872y0g6mabmmyrw9xmb483xgvxxbsz9";
-    };
-    meta.homepage = "https://github.com/Mikilio/harpoon/";
   };
 
 
